@@ -2,16 +2,19 @@
 
 int main(int ac, char **av)
 {
-    char **map;
+    t_game  game;
 
     if (ac != 2)
         return (ft_printf("Error\n"), 1);
-    map = read_map(av[1]);
-    if (!map)
+    game.map = read_map(av[1]);
+    if (!game.map)
         return (ft_printf("Error reading map\n"), 1);
-    if (error_all(ac, map, av))
+    if (error_all(ac, game.map, av))
         return (1);
-    free_map(map);
+    map_size(&game);
+    game_start_P_C(&game);
+    ft_printf("%d\n", game.piece);
+    free_map(game.map);
     return (0);
 }
 

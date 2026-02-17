@@ -6,7 +6,7 @@
 /*   By: ilbouidd <ilbouidd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 15:15:26 by ilbouidd          #+#    #+#             */
-/*   Updated: 2026/02/15 15:48:12 by ilbouidd         ###   ########.fr       */
+/*   Updated: 2026/02/16 18:08:43 by ilbouidd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,11 @@ int count_lines(char *av)
 
 char **read_map(char *av)
 {
-    int fd;
-    int i;
-    int lines;
-    char **map;
+    int     fd;
+    int     i;
+    int     lines;
+    char    **map;
+    int     len;
 
     lines = count_lines(av);
     if (lines == 0)
@@ -49,16 +50,26 @@ char **read_map(char *av)
         return (NULL);
 
     fd = open(av, O_RDONLY);
+    if (fd < 0)
+        return (free(map), NULL);
+
     i = 0;
-    map[i] = get_next_line(fd);
-    while (map[i])
+    while (i < lines)
     {
-        i++;
         map[i] = get_next_line(fd);
+        if (!map[i])
+            break ;
+        len = ft_strlen(map[i]);
+        if (len > 0 && map[i][len - 1] == '\n')
+            map[i][len - 1] = '\0';
+
+        i++;
     }
+    map[i] = NULL;
     close(fd);
     return (map);
 }
+
 
 void free_map(char **map)
 {

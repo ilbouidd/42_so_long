@@ -11,7 +11,10 @@ SRC_DIR     = src
 SRCS        = $(SRC_DIR)/main.c \
               $(SRC_DIR)/parsing_all.c \
               $(SRC_DIR)/parsing.c \
-              $(SRC_DIR)/utils.c
+              $(SRC_DIR)/utils.c	\
+			  $(SRC_DIR)/parsing_player.c \
+			  $(SRC_DIR)/game_one.c	\
+			  $(SRC_DIR)/map_utils.c \
 
 OBJS        = $(SRCS:.c=.o)
 

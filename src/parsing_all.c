@@ -6,7 +6,7 @@
 /*   By: ilbouidd <ilbouidd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 12:47:14 by ilbouidd          #+#    #+#             */
-/*   Updated: 2026/02/16 12:52:50 by ilbouidd         ###   ########.fr       */
+/*   Updated: 2026/02/16 19:16:38 by ilbouidd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int error_all(int ac, char **map, char **av)
         return (ft_printf("Error: No Commestiuble\n"), 1);
     if (error_only_valid_char(map))
         return (ft_printf("No valid character\n"), 1);
+    if (error_playable(map))
+        return (ft_printf("Is not possible to finish the map\n"), 1);
     if (error_second(map))
         return (1);
     return (0);
@@ -83,11 +85,27 @@ int	error_only_valid_char(char **map)
 			if (map[i][j] != '0' && map[i][j] != '1'
 				&& map[i][j] != 'P' && map[i][j] != 'C'
 				&& map[i][j] != 'E')
-				return (0);
+				return (1);
 			j++;
 		}
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
+int error_playable(char **map)
+{
+    char **copy;
+    int px;
+    int py;
+    int res;
+
+    copy = copy_map(map);
+    if (!copy)
+        return (1);
+    find_player(copy, &px, &py);
+    flood_fill(copy, px, py);
+    res = check_accessible(copy);
+    free_map(copy);
+    return (res);
+}
