@@ -6,7 +6,7 @@
 /*   By: ilbouidd <ilbouidd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 18:48:38 by ilbouidd          #+#    #+#             */
-/*   Updated: 2026/02/17 22:27:59 by ilbouidd         ###   ########.fr       */
+/*   Updated: 2026/02/19 01:18:38 by ilbouidd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,18 @@ int map_width(char **map)
     return (i);
 }
 
-void    map_size(t_game *game)
+void map_size(t_game *game)
 {
-    game->height = map_height(game->map);
-    game->width = map_width(game->map);
+    int i = 0;
+
+    // Hauteur = nombre de lignes
+    while (game->map[i])
+        i++;
+    game->height = i;
+
+    // Largeur = longueur de la première ligne
+    if (game->height > 0)
+        game->width = ft_strlen(game->map[0]);
+    else
+        game->width = 0;
 }

@@ -6,68 +6,64 @@
 /*   By: ilbouidd <ilbouidd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 15:15:26 by ilbouidd          #+#    #+#             */
-/*   Updated: 2026/02/16 18:08:43 by ilbouidd         ###   ########.fr       */
+/*   Updated: 2026/02/19 01:48:38 by ilbouidd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-int count_lines(char *av)
-{
-    int fd;
-    int count;
-    char *line;
-
-    count = 0;
-    fd = open(av, O_RDONLY);
-    if (fd < 0)
-        return (0);
-    line = get_next_line(fd);
-    while (line)
-    {
-        count++;
-        free(line);
-        line = get_next_line(fd);
-    }
-    close(fd);
-    return (count);
-}
-
-char **read_map(char *av)
+int count_lines(const char *file)
 {
     int     fd;
-    int     i;
+    char    *line;
     int     lines;
-    char    **map;
-    int     len;
 
-    lines = count_lines(av);
-    if (lines == 0)
-        return (NULL);
-
-    map = malloc(sizeof(char *) * (lines + 1));
-    if (!map)
-        return (NULL);
-
-    fd = open(av, O_RDONLY);
+    fd = open(file, O_RDONLY);
     if (fd < 0)
-        return (free(map), NULL);
+        return (-1);
+    lines = 0;
+    while ((line = get_next_line(fd)) != NULL)
+    {
+        lines++;
+        free(line);
+    }
+    close(fd);
+    return (lines);
+}
+
+
+char **read_map(const char *file)
+{
+    int     fd;
+    char    *line;
+    char    **map;
+    int     i;
+    int     height;
+
+    height = count_lines(file);
+    if (height <= 0)
+        return NULL;
+
+    map = malloc(sizeof(char *) * (height + 1));
+    if (!map)
+        return NULL;
+
+    fd = open(file, O_RDONLY);
+    if (fd < 0)
+    {
+        free(map);
+        return NULL;
+    }
 
     i = 0;
-    while (i < lines)
+    while ((line = get_next_line(fd)) != NULL)
     {
-        map[i] = get_next_line(fd);
-        if (!map[i])
-            break ;
-        len = ft_strlen(map[i]);
-        if (len > 0 && map[i][len - 1] == '\n')
-            map[i][len - 1] = '\0';
-
-        i++;
+        map[i++] = ft_strtrim(line, "\n"); // supprime le \n
+        free(line);
     }
     map[i] = NULL;
     close(fd);
-    return (map);
+    return map;
 }
 
 

@@ -24,32 +24,31 @@ MLX_LIB     = $(MLX_DIR)/libmlx.a
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(LIBFT):
-	make -C $(LIBFT_DIR)
-	@echo "LIBFT GOOD 🤓👍🔥"
+	@make -C $(LIBFT_DIR)
 
 $(MLX_LIB):
-	make -C $(MLX_DIR)
+	@make -C $(MLX_DIR)
 	@echo "MiniLibX GOOD 🤓👍🔥"
 
 $(NAME): $(MLX_LIB) $(LIBFT) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) \
+	@$(CC) $(CFLAGS) $(OBJS) \
 		-L$(LIBFT_DIR) -lft \
 		-L$(MLX_DIR) -lmlx -lXext -lX11 -lm \
 		-o $(NAME)
 	@echo "TOUT EST GOOD 🤓👍🔥"
 
 clean:
-	rm -f $(OBJS)
-	make -C $(LIBFT_DIR) clean
-	make -C $(MLX_DIR) clean
+	@rm -f $(OBJS)
+	@make -C $(LIBFT_DIR) clean
+	@make -C $(MLX_DIR) clean
 	@echo "TOUT LES FICHIERS .o 💀"
 
 fclean: clean
-	rm -f $(NAME)
-	make -C $(LIBFT_DIR) fclean
+	@rm -f $(NAME)
+	@make -C $(LIBFT_DIR) fclean
 	@echo "so_long 💀"
 
 re: fclean all
