@@ -6,9 +6,15 @@
 /*   By: ilbouidd <ilbouidd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 14:24:36 by ilbouidd          #+#    #+#             */
-/*   Updated: 2026/02/19 01:48:56 by ilbouidd         ###   ########.fr       */
+/*   Updated: 2026/02/20 00:16:38 by ilbouidd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#define KEY_W 119
+#define KEY_A 97
+#define KEY_S 115
+#define KEY_D 100
+#define KEY_ESC 65307
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
@@ -33,6 +39,7 @@ typedef struct s_game
     void    *exit_img;
     int     img_height;
     int     img_width;
+    int     moves;
 }   t_game;
 
 /*Parsing*/
@@ -61,6 +68,8 @@ void    map_size(t_game *game);
 void    game_start_P_C(t_game *game);
 void    game_start(t_game *game);
 void fill_game_window(t_game *game);
-
+int keyboard_game(int keycode, t_game *game);
+void move_player(t_game *game, int x, int y);
+int close_game(t_game *game);
 
 #endif
