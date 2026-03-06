@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        n:::      ::::::::   */
+/*                                                        :::      ::::::::   */
 /*   parsing_all.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilbouidd <ilbouidd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/14 12:47:14 by ilbouidd          #+#    #+#             */
-/*   Updated: 2026/03/02 00:44:16 by ilbouidd         ###   ########.fr       */
+/*   Created: 2026/03/06 00:54:05 by ilbouidd          #+#    #+#             */
+/*   Updated: 2026/03/06 01:09:25 by ilbouidd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ int	error_all(int ac, char **map, char **av)
 		return (ft_printf("Error\n No Commestible\n"), 1);
 	if (error_only_valid_char(map))
 		return (ft_printf("Error\n No valid character\n"), 1);
-	if (error_playable(map))
-		return (ft_printf("Error\n Is not possible to finish the map\n"), 1);
 	if (error_second(map))
 		return (1);
 	return (0);
@@ -92,13 +90,15 @@ int	error_only_valid_char(char **map)
 	return (0);
 }
 
-int	error_playable(char **map)
+int	error_playable(	t_game	*game, char **map)
 {
-	char **copy;
-	int px;
-	int py;
-	int res;
+	char	**copy;
+	int		px;
+	int		py;
+	int		res;
 
+	px = game->player_x;
+	py = game->player_y;
 	copy = copy_map(map);
 	if (!copy)
 		return (1);

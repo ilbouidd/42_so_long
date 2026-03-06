@@ -6,7 +6,7 @@
 /*   By: ilbouidd <ilbouidd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 14:24:01 by ilbouidd          #+#    #+#             */
-/*   Updated: 2026/03/02 05:39:43 by ilbouidd         ###   ########.fr       */
+/*   Updated: 2026/03/06 00:49:43 by ilbouidd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ int	error_ber(char *av)
 		i++;
 	if (i < 4)
 		return (1);
-	if (av[i - 4] == '.' && av[i - 3] == 'b' && av[i - 2] == 'e' && av[i
-		- 1] == 'r')
+	if (av[i - 4] == '.' && av[i - 3] == 'b' && av[i - 2] == 'e'
+		&& av[i - 1] == 'r')
 		return (0);
 	return (1);
 }

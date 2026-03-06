@@ -6,7 +6,7 @@
 /*   By: ilbouidd <ilbouidd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 14:24:36 by ilbouidd          #+#    #+#             */
-/*   Updated: 2026/03/04 00:22:26 by ilbouidd         ###   ########.fr       */
+/*   Updated: 2026/03/06 01:06:22 by ilbouidd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int			error_all(int ac, char **map, char **av);
 int			error_second(char **map);
 int			error_rectangle(char **map);
 int			error_only_valid_char(char **map);
-int			error_playable(char **map);
+int			error_playable(t_game *game, char **map);
 char		**copy_map(char **map);
 void		find_player(char **map, int *px, int *py);
 void		flood_fill(char **map, int x, int y);
@@ -59,7 +59,7 @@ void		free_map(char **map);
 int			map_height(char **map);
 int			map_width(char **map);
 void		map_size(t_game *game);
-void		game_start_P_C(t_game *game);
+void		game_start_p_c(t_game *game);
 void		game_start(t_game *game);
 void		fill_game_window(t_game *game);
 int			keyboard_game(int keycode, t_game *game);

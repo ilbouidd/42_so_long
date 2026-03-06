@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ilbouidd <ilbouidd@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/06 00:49:15 by ilbouidd          #+#    #+#             */
+/*   Updated: 2026/03/06 01:03:38 by ilbouidd         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
 int	main(int ac, char **av)
@@ -10,7 +22,9 @@ int	main(int ac, char **av)
 	if (error_all(ac, game.map, av))
 		return (free_map(game.map), 1);
 	map_size(&game);
-	game_start_P_C(&game);
+	game_start_p_c(&game);
+	if (error_playable(&game, game.map))
+		return (ft_printf("Error\n Is not possible to finish the map\n"), 1);
 	game_start(&game);
 	if (!game.mlx || !game.interface)
 		return (free_map(game.map), 1);

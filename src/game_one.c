@@ -6,7 +6,7 @@
 /*   By: ilbouidd <ilbouidd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 12:22:35 by ilbouidd          #+#    #+#             */
-/*   Updated: 2026/03/04 00:42:07 by ilbouidd         ###   ########.fr       */
+/*   Updated: 2026/03/06 00:48:20 by ilbouidd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,4 +117,3 @@ int	close_game(t_game *game)
 	free(game->mlx);
 	exit(0);
 }
-

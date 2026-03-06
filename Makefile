@@ -16,6 +16,7 @@ SRCS        = $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/game_one.c	\
 			  $(SRC_DIR)/game_two.c	\
 			  $(SRC_DIR)/map_utils.c \
+			  $(SRC_DIR)/read_map.c \
 
 OBJS        = $(SRCS:.c=.o)
 
