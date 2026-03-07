@@ -6,7 +6,7 @@
 /*   By: ilbouidd <ilbouidd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 14:24:36 by ilbouidd          #+#    #+#             */
-/*   Updated: 2026/03/06 01:06:22 by ilbouidd         ###   ########.fr       */
+/*   Updated: 2026/03/07 01:03:21 by ilbouidd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,13 @@ int			error_second(char **map);
 int			error_rectangle(char **map);
 int			error_only_valid_char(char **map);
 int			error_playable(t_game *game, char **map);
+int			error_playable_e(t_game *game, char **map);
 char		**copy_map(char **map);
 void		find_player(char **map, int *px, int *py);
 void		flood_fill(char **map, int x, int y);
+void		flood_fill_e(char **map, int x, int y);
 int			check_accessible(char **map);
+int			check_accessible_e(char **map);
 
 /*MAP*/
 int			count_lines(char *file);

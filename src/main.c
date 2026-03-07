@@ -6,7 +6,7 @@
 /*   By: ilbouidd <ilbouidd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 00:49:15 by ilbouidd          #+#    #+#             */
-/*   Updated: 2026/03/06 01:03:38 by ilbouidd         ###   ########.fr       */
+/*   Updated: 2026/03/07 00:56:38 by ilbouidd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int ac, char **av)
 		return (free_map(game.map), 1);
 	map_size(&game);
 	game_start_p_c(&game);
-	if (error_playable(&game, game.map))
+	if (error_playable_e(&game, game.map) || error_playable(&game, game.map))
 		return (ft_printf("Error\n Is not possible to finish the map\n"), 1);
 	game_start(&game);
 	if (!game.mlx || !game.interface)

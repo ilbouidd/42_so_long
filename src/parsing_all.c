@@ -6,7 +6,7 @@
 /*   By: ilbouidd <ilbouidd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 00:54:05 by ilbouidd          #+#    #+#             */
-/*   Updated: 2026/03/06 01:09:25 by ilbouidd         ###   ########.fr       */
+/*   Updated: 2026/03/07 01:16:44 by ilbouidd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ int	error_second(char **map)
 	if (error_rectangle(map))
 		return (ft_printf("Error\n Map not rectangle\n"), 1);
 	if (error_outline(map[0]) || error_outline(map[len - 1]))
-		return (ft_printf("Error\n map outline\n"), 1);
+		return (ft_printf("Error\n Map outline\n"), 1);
 	while (i < len - 1)
 	{
 		if (error_outline_mid(map[i]))
-			return (1);
+			return (ft_printf("Error\n Map outline\n"), 1);
 		i++;
 	}
 	return (0);
@@ -90,7 +90,7 @@ int	error_only_valid_char(char **map)
 	return (0);
 }
 
-int	error_playable(	t_game	*game, char **map)
+int	error_playable(t_game *game, char **map)
 {
 	char	**copy;
 	int		px;

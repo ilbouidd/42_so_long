@@ -6,51 +6,11 @@
 /*   By: ilbouidd <ilbouidd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 18:36:03 by ilbouidd          #+#    #+#             */
-/*   Updated: 2026/03/06 01:51:52 by ilbouidd         ###   ########.fr       */
+/*   Updated: 2026/03/07 01:05:38 by ilbouidd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-// char	**copy_map(char **map)
-// {
-// 	int		i;
-// 	int		j;
-// 	int		len;
-// 	char	**copy;
-
-// 	i = 0;
-// 	while (map[i])
-// 		i++;
-// 	copy = malloc(sizeof(char *) * (i + 1));
-// 	if (!copy)
-// 		return (NULL);
-// 	i = 0;
-// 	while (map[i])
-// 	{
-// 		len = 0;
-// 		while (map[i][len])
-// 			len++;
-// 		copy[i] = malloc(sizeof(char) * (len + 1));
-// 		if (!copy[i])
-// 		{
-// 			while (i > 0)
-// 				free(copy[--i]);
-// 			free(copy);
-// 			return (NULL);
-// 		}
-// 		j = 0;
-// 		while (map[i][j])
-// 		{
-// 			copy[i][j] = map[i][j];
-// 			j++;
-// 		}
-// 		copy[i][j] = '\0';
-// 		i++;
-// 	}
-// 	copy[i] = NULL;
-// 	return (copy);
-// }
 
 char	**copy_map(char **map)
 {
@@ -68,11 +28,12 @@ char	**copy_map(char **map)
 	while (map[i])
 	{
 		copy[i] = ft_strdup(map[i]);
-		if (!copy[i++])
+		if (!copy[i])
 		{
 			free_map(copy);
 			return (NULL);
 		}
+		i++;
 	}
 	return (copy);
 }
